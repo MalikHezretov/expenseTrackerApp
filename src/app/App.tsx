@@ -1,7 +1,10 @@
+import Dashboard from "../screens/dashboard";
+
 function App() {
   return (
-    <div>
-    </div>
+    <>
+      <Dashboard onAddExpense={() => {}}></Dashboard>
+    </>
   );
 }
 

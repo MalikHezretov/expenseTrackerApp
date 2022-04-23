@@ -1,0 +1,25 @@
+.new-expense {
+    padding: 1rem;
+    margin: 2rem auto;
+    width: 50rem;
+    max-width: 95%;
+    text-align: center;
+  }
+  
+  .new-expense button {
+    font: inherit;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 1px solid #ffffff;
+    background-color: rgb(3, 90, 133);
+    opacity: 0.9;
+    color: #ffffff;
+    margin-right: 1rem;
+  }
+  
+  .new-expense button:hover,
+  .new-expense button:active {
+    background-color: rgb(3, 90, 133);
+    border-color: #ffffff;
+    opacity: 1;
+  }
