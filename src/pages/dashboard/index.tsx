@@ -1,25 +1,26 @@
-import { useState } from "react";
+import { Dispatch, useState } from "react";
+import { AppState } from "../../redux/reducers";
+import { useSelector, useDispatch } from 'react-redux';
 import "./styles.css";
 import ExpenseForm from "../../components/expenseForm";
 import { ExpenseDataType } from "../../common/types/expensType";
 import Expenses from "../../components/expenseContainer";
+import { useNavigate } from 'react-router-dom'
+import { ExpenseActions } from "../../redux/actions/ExpenseActions";
 
 const Dashboard = () => {
-  const [expenses, setExpenses] = useState<ExpenseDataType[]>([]);
   const [isEditting, setIsEditting] = useState(false);
+  const navigate = useNavigate();
+  const { expenses } = useSelector((state: AppState) => state.expenses);
+  // @ts-ignore
+  const expenseDispatch = useDispatch<Dispatch<ExpenseActions>>();
 
-  const addExpenseHandler = (expense: ExpenseDataType) => {
-    setExpenses((previousArray) => {
-      return [expense, ...previousArray];
-    });
-  };
-
-  const saveExpenseDataHandler = (enteredExpenseDate: ExpenseDataType) => {
+  const saveExpenseDataHandler = (enteredExpenseDate: ExpenseDataType[]) => {
     const expenseData = {
       ...enteredExpenseDate,
       id: Math.random().toString(),
     };
-    addExpenseHandler(expenseData);
+    expenseDispatch({type: 'ADD_EXPENSE', payload: expenseData});
     stopEdittingHandler();
   };
 
@@ -31,11 +32,14 @@ const Dashboard = () => {
     setIsEditting(false);
   };
 
+  const onPressChartView = () => navigate('/expenseChart')
+  console.log('expenses: ', expenses)
   return (
     <div className="new-expense">
       {!isEditting && (
         <>
         <button onClick={startEditingHandler}>Add New Expense</button>
+        <button onClick={onPressChartView}>Chart View</button>
         </>
       )}
       {isEditting && (

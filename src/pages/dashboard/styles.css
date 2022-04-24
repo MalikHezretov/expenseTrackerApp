@@ -3,7 +3,7 @@
     margin: 2rem auto;
     width: 50rem;
     max-width: 95%;
-    text-align: center;
+    text-align: left;
   }
   
   .new-expense button {
@@ -24,7 +24,6 @@
     opacity: 1;
   }
   
-
 .link-button{
   color:white;
   background-color: #0471A6;
