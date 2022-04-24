@@ -1,4 +1,5 @@
-export type ExpenseData = {
+export type ExpenseDataType = {
+    id: string
     name: string
     amount: number
     date: Date
