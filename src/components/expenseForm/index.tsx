@@ -1,9 +1,8 @@
 import "./styles.css";
 import { useState } from "react";
-import { ExpenseData } from "../../common/types/expensType";
 
 interface Props {
-    onSaveExpenseData: (expenseData: ExpenseData) => void
+    onSaveExpenseData: (expenseData: any) => void
     onCancel: () => void
 }
 
