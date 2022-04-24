@@ -4,19 +4,22 @@ import ExpenseCard from "../expenseCard"
 import ExpensesList from "../expenseList"
 import ExpensesFilter from "../expenseFilter"
 import { ExpenseDataType } from "../../common/types/expensType"
+import ExpensesChart from "../chartContainer"
 
 interface Props {
     items: ExpenseDataType[]
+    showChart: boolean
 }
 
 const Expenses = (props: Props) => {
+  const {items, showChart} = props
   const [filteredYear, setFilteredYear] = useState<string>("2022")
 
-  const filterChangeHandler = (date: any) => {
+  const filterChangeHandler = (date: string) => {
     setFilteredYear(date)
   }
 
-  const filteredExpenses = props.items.filter((expense) => {
+  const filteredExpenses = items.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear
   })
 
@@ -29,7 +32,8 @@ const Expenses = (props: Props) => {
             selected={filteredYear}
             onFilterChange={filterChangeHandler}
           />
-          <ExpensesList items={filteredExpenses} /> 
+          {showChart && (<ExpensesChart expenses={filteredExpenses} />)}
+          {!showChart && (<ExpensesList items={filteredExpenses} /> )}
         </>
       </ExpenseCard>
     </>

@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [isEditting, setIsEditting] = useState(false);
   const navigate = useNavigate();
   const { expenses } = useSelector((state: AppState) => state.expenses);
+  // fix ts warning
   // @ts-ignore
   const expenseDispatch = useDispatch<Dispatch<ExpenseActions>>();
 
@@ -33,7 +34,7 @@ const Dashboard = () => {
   };
 
   const onPressChartView = () => navigate('/expenseChart')
-  console.log('expenses: ', expenses)
+
   return (
     <div className="new-expense">
       {!isEditting && (
@@ -48,7 +49,7 @@ const Dashboard = () => {
           onCancel={stopEdittingHandler}
         />
       )}
-      <Expenses items={expenses} />
+      <Expenses items={expenses} showChart={false} />
     </div>
   );
 };
