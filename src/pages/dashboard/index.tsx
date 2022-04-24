@@ -34,7 +34,7 @@ const Dashboard = () => {
   };
 
   const onPressChartView = () => navigate('/expenseChart')
-
+  console.log('expenses: ', expenses)
   return (
     <div className="new-expense">
       {!isEditting && (
@@ -49,7 +49,8 @@ const Dashboard = () => {
           onCancel={stopEdittingHandler}
         />
       )}
-      <Expenses items={expenses} showChart={false} />
+      {expenses && <Expenses items={expenses} showChart={false} />}
+
     </div>
   );
 };

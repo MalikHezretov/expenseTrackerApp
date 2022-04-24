@@ -7,19 +7,20 @@ import { ExpenseDataType } from "../../common/types/expensType"
 import ExpensesChart from "../chartContainer"
 
 interface Props {
-    items: ExpenseDataType[]
+    items: ExpenseDataType[] | undefined
     showChart: boolean
 }
 
 const Expenses = (props: Props) => {
   const {items, showChart} = props
+  console.log('Expenses items: ', items)
   const [filteredYear, setFilteredYear] = useState<string>("2022")
 
   const filterChangeHandler = (date: string) => {
     setFilteredYear(date)
   }
 
-  const filteredExpenses = items.filter((expense) => {
+  const filteredExpenses = items && items.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear
   })
 
@@ -32,8 +33,8 @@ const Expenses = (props: Props) => {
             selected={filteredYear}
             onFilterChange={filterChangeHandler}
           />
-          {showChart && (<ExpensesChart expenses={filteredExpenses} />)}
-          {!showChart && (<ExpensesList items={filteredExpenses} /> )}
+          {showChart && (<ExpensesChart expenses={filteredExpenses ?? []} />)}
+          {!showChart && (<ExpensesList items={filteredExpenses ?? []} /> )}
         </>
       </ExpenseCard>
     </>
