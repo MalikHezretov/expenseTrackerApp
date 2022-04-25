@@ -34,7 +34,7 @@ const Dashboard = () => {
   };
 
   const onPressChartView = () => navigate('/expenseChart')
-  console.log('expenses: ', expenses)
+
   return (
     <div className="new-expense">
       {!isEditting && (

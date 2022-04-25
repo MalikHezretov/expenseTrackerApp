@@ -13,7 +13,6 @@ interface Props {
 
 const Expenses = (props: Props) => {
   const {items, showChart} = props
-  console.log('Expenses items: ', items)
   const [filteredYear, setFilteredYear] = useState<string>("2022")
 
   const filterChangeHandler = (date: string) => {
